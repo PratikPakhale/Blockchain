@@ -44,7 +44,7 @@ class Blockchain:
       hash_operation = hashlib.sha256(str(new_proof**2 - previous_proof**2).encode()).hexdigest()
 
       # verifying condition - you can change the number of zeros; the more the number, harder to get the proof of work
-      if hash_operation[:4] == '0000':
+      if hash_operation[:5] == '00000':
         check_proof = True
       else:
         new_proof += 1
@@ -73,7 +73,7 @@ class Blockchain:
       previous_proof = previous_block['proof']
       proof = block['proof']
       hash_operation = hashlib.sha256(str(proof**2 - previous_proof**2).encode()).hexdigest()
-      if hash_operation[:4] != '0000':
+      if hash_operation[:5] != '00000':
         return False
 
       previous_block = block
